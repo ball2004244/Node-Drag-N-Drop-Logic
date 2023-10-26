@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from code_runner import create_file, run_code
+from code_runner import create_file, run_python_code
 
 app = FastAPI()
 
@@ -15,13 +15,14 @@ async def root():
 async def running_code(code_req: CodeRequest):
     # get code from codereq
     code = code_req.code
-    path = 'temp/code.js'
+    # path = 'temp/code.js'
+    path = 'temp/code.py'
     
     # create file
     create_file(path, code)
     
     # run code
-    output = run_code(path)
+    output = run_python_code(path)
     
     response = {
         'status': 'success',
