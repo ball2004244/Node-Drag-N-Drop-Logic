@@ -13,9 +13,8 @@ async def root():
 
 @app.post("/")
 async def running_code(code_req: CodeRequest):
-    # get code from codereq
+    # get code from request
     code = code_req.code
-    # path = 'temp/code.js'
     path = 'temp/code.py'
     
     # create file
