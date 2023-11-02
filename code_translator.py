@@ -38,7 +38,8 @@ class Translator:
 
                 # start translating
                 formatted_code = self.all_keywords[start_term] % value
-                converted_code += f'{current_indentation}{formatted_code}\n'
+                if formatted_code:
+                    converted_code += f'{current_indentation}{formatted_code}\n'
 
                 if start_term in self.start_keywords:
                     indent += 1

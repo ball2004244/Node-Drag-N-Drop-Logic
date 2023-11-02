@@ -2,17 +2,7 @@ import subprocess
 import sys
 from typing import Tuple
 
-def create_file(path: str, content: str) -> None:
-    '''
-    Create file at path with content
-    '''
-    try:
-        with open(path, 'w') as f:
-            f.write(content)
-    except Exception as e:
-        print(str(e))
-        exit(1)
-        
+
 def run_python_code(path: str) -> Tuple[str, str]:
     '''
     Run python code and return stdout and stderr
@@ -30,6 +20,7 @@ def run_python_code(path: str) -> Tuple[str, str]:
         return '', 'Timeout expired'
     except Exception as e:
         return '', str(e)
+
 
 def run_node_code(path: str) -> Tuple[str, str]:
     '''
@@ -79,19 +70,24 @@ def main():
         with open(path, 'r') as f:
             code = f.read()
 
-        stdout, stderr = run_code(code)
-        print(stdout, stderr)
+        stdout, stderr = run_python_code(path)
+        print('------------------')
+        print('Original code:\n%s' % code)
+        print('------------------')
+        print('stdout:\n%s' % (stdout if stdout else None))
+        print('stderr:\n%s' % (stderr if stderr else None))
+        print('------------------')
 
     except Exception as e:
         print(None, str(e))
 
 
 if __name__ == '__main__':
-    # main()
-    path = input('Enter path: ')
-    code = ''
-    with open(path, 'r') as f:
-        code = f.read()
-        
-    stdout, stderr = run_code(code)
-    print(stdout, stderr)
+    main()
+    # path = input('Enter path: ')
+    # code = ''
+    # with open(path, 'r') as f:
+    #     code = f.read()
+
+    # stdout, stderr = run_python_code(path)
+    # print(stdout, stderr)
