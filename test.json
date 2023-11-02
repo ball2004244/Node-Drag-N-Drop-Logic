@@ -1,19 +1,10 @@
 {
     "print": "Hello World",
-    "if": {
-        "condition": "a == 1",
-        "then": {
-            "print": "a is 1"
-        },
-        "else": {
-            "print": "a is not 1"
-        }
-    },
-    "for": {
-        "variable": "i",
-        "in": "range(10)",
-        "do": {
-            "print": "i"
-        }
-    }
+    "for": "i in range(10)",
+    "if1": "i % 2 == 0",
+    "if2": "i % 3 == 0",
+    "print2": "i is divisible by 6",
+    "endif2": "",
+    "endif1": "",
+    "endfor": ""
 }
