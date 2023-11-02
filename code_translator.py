@@ -1,16 +1,21 @@
 import json
 import re
+from typing import Union
 
 class Translator:
-    def __init__(self, raw_code: str) -> None:
-        self.json_code = json.loads(raw_code)
+    def __init__(self, raw_code: Union[str, dict]) -> None:
+        self.json_code = raw_code
+        
+        if isinstance(raw_code, str):
+            self.json_code = json.loads(raw_code)
+
         self.python_code = ''
         self.indentation = '\t'
 
         self.variables = {}
         
         self.keywords = {
-            'print': 'print("%s")'
+            'print': 'print(%s)',
         }
         
         self.start_keywords = {

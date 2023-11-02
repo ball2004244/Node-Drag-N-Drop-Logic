@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from code_runner import create_file, run_python_code
+from code_translator import Translator
+from typing import Dict
 
 app = FastAPI()
 
 class CodeRequest(BaseModel):
-    code: str
+    code: Dict[str, str]
 
 @app.get("/")
 async def root():
@@ -14,9 +16,12 @@ async def root():
 @app.post("/")
 async def running_code(code_req: CodeRequest):
     # get code from request
-    code = code_req.code
+    json_code = code_req.code
     path = 'temp/code.py'
     
+    translator = Translator(json_code)
+    code = translator.convert()
+
     # create file
     create_file(path, code)
     

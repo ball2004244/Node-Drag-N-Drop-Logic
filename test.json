@@ -1,9 +1,9 @@
 {
-    "print": "Hello World",
+    "print": "'Hello World'",
     "for": "i in range(10)",
     "if1": "i % 2 == 0",
     "if2": "i % 3 == 0",
-    "print2": "i is divisible by 6",
+    "print2": "i + ' is divisible by 6'",
     "endif2": "",
     "endif1": "",
     "endfor": ""
