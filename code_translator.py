@@ -1,6 +1,7 @@
 import json
 import re
 from typing import Union
+from config import START_KEYWORDS, END_KEYWORDS, ALL_KEYWORDS
 
 class Translator:
     def __init__(self, raw_code: Union[str, dict]) -> None:
@@ -14,27 +15,9 @@ class Translator:
 
         self.variables = {}
         
-        self.keywords = {
-            'print': 'print(%s)',
-        }
-        
-        self.start_keywords = {
-            'for': 'for %s:',
-            'while': 'while %s:',
-            'if': 'if %s:',
-        }
-        
-        self.end_keywords = {
-            'endfor': '%s',
-            'endwhile': '%s',
-            'endif': '%s',
-        }
-
-        self.all_keywords = {
-            **self.keywords,
-            **self.start_keywords,
-            **self.end_keywords,
-        }
+        self.start_keywords = START_KEYWORDS.copy()
+        self.end_keywords = END_KEYWORDS.copy()
+        self.all_keywords = ALL_KEYWORDS.copy()
 
     def convert(self) -> str:
         try:
@@ -45,7 +28,6 @@ class Translator:
                 pattern = r'[a-zA-Z]+'
                 start_term = re.search(pattern, key)
                 start_term = str(start_term.group())
-                print('Converting key:%s to %s' % (key, start_term))
                 current_indentation = self.indentation * indent
 
                 if start_term not in self.all_keywords:

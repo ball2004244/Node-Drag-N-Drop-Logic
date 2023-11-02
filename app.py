@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from code_runner import create_file, run_python_code
 from code_translator import Translator
 from typing import Dict
+from utils import run_thread
 
 app = FastAPI()
 
