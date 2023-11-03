@@ -11,8 +11,8 @@ COPY . /application
 # Install the required packages
 RUN pip install -r requirements.txt
 
-# Expose port 8080 for the application
-EXPOSE 8080
+# Expose port 9000 for the application
+EXPOSE 9000
 
 # Start the application using uvicorn
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9000"]
