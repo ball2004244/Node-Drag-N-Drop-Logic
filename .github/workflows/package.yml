@@ -19,9 +19,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Image
-        run: docker build -t ${{ github.event.repository.name }} . 
+        run: docker build -t ${{ secrets.DOCKERHUB_REPO }} . 
 
       - name: Push Image
         run: |
-          docker tag ${{ github.event.repository.name }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
+          docker tag ${{ secrets.DOCKERHUB_REPO }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
