@@ -1,6 +1,6 @@
 import json
 import re
-from typing import Union
+from typing import Union, Tuple
 from config import START_KEYWORDS, END_KEYWORDS, ALL_KEYWORDS
 
 class Translator:
@@ -19,7 +19,7 @@ class Translator:
         self.end_keywords = END_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()
 
-    def convert(self) -> str:
+    def convert(self) -> Tuple[str, str]:
         try:
             converted_code = ''
             indent = 0
@@ -46,7 +46,7 @@ class Translator:
                 elif start_term in self.end_keywords:
                     indent -= 1
 
-            return converted_code
+            return 'success', converted_code
 
         except Exception as e:
             # get the line of error
@@ -57,7 +57,7 @@ class Translator:
             print(e)
             print(f"Line of error: {lineno}")
 
-            return ''
+            return 'error', str(e)
 
 
 if __name__ == '__main__':
