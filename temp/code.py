@@ -1,5 +1,5 @@
-for i in range(10):
-	if i % 2 == 0:
-		print(i, 'is even')
-	else: 
-		print(i, 'is odd')
+print('Hello World!')
+def power(a, n):
+	# Calculate a to the power of n
+	return a ** n
+print(power(10, 2))
