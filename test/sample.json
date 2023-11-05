@@ -1,0 +1,12 @@
+{
+    "code": {
+        "for": "i in range(10)",
+        "if": "i % 2 == 0",
+        "print": "i, 'is even'",
+        "endif": "",
+        "else": "",
+        "print2": "i, 'is odd'",
+        "endelse": "",
+        "endfor": ""
+    }
+}

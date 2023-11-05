@@ -1,0 +1,11 @@
+{
+    "code": {
+        "print": "'Hello World!'",
+        "func": "power(a, n)",
+        "comment": "Calculate a to the power of n",
+        "return": "a ** n",
+        "endfunc": "",
+
+        "print2": "power(10, 2)"
+    }
+}
