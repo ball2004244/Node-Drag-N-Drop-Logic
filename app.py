@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from code_runner import run_python_code
 from code_translator import Translator
 from typing import Dict
-from utils import create_file
+from utils import create_path
 
 app = FastAPI()
 
@@ -48,7 +48,7 @@ async def running_code(code_req: CodeRequest):
         return response
 
     # create file
-    create_file(path, code[1])
+    create_path(path, code[1], overwrite=True)
 
     # run code
     output = run_python_code(path)
