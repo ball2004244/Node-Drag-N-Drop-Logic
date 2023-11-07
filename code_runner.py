@@ -11,7 +11,7 @@ def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
     try:
         os.chdir(working_dir)
         proc = subprocess.run(
-            command,
+            command.split(' '),
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             encoding='utf-8',

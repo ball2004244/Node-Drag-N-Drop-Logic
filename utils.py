@@ -45,6 +45,8 @@ def create_path(path: str, content: str, overwrite: bool = False) -> None:
     '''
     Check and create path
     '''
+    current_dir = os.getcwd()
+
     try:
         if path_exists(path) and not overwrite:
             raise Exception('Path already exists')
@@ -53,9 +55,15 @@ def create_path(path: str, content: str, overwrite: bool = False) -> None:
         pre_path, filename = os.path.split(path)
         
         create_dir(pre_path)
-        create_file(path, content)
+        
+        os.chdir(pre_path)
+        create_file(filename, content)
+        os.chdir('..')
+
     except Exception as e:
         print(str(e))
+    finally:
+        os.chdir(current_dir)
     
 if __name__ == '__main__':
     create_path('tester/test2/nothin/test.txt', 'hello world', overwrite=True)
