@@ -17,6 +17,7 @@ app.add_middleware(
 
 
 class CodeRequest(BaseModel):
+    filename: str
     code: Dict[str, str]
 
 class CLIRequest(BaseModel):
@@ -36,8 +37,10 @@ RESPONSE_TEMPLATE = {
 @app.post("/")
 async def running_code(code_req: CodeRequest) -> Dict[str, str]:
     # get code from request
+    filename = code_req.filename if code_req.filename else 'code.py'
     json_code = code_req.code
-    path = 'temp/code.py'
+    working_dir = 'temp'
+    path = f'{working_dir}/{filename}'
 
     translator = Translator(json_code)
     code = translator.convert()
