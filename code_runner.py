@@ -1,7 +1,26 @@
 import subprocess
 import sys
 from typing import Tuple
-
+import os
+def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
+    '''
+    Run command and return stdout and stderr
+    '''
+    try:
+        os.chdir(working_dir)
+        proc = subprocess.run(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding='utf-8',
+            timeout=5
+        )
+        os.chdir('..')
+        return proc.stdout, proc.stderr
+    except subprocess.TimeoutExpired:
+        return '', 'Timeout expired'
+    except Exception as e:
+        return '', str(e)
 
 def run_python_code(path: str) -> Tuple[str, str]:
     '''
