@@ -2,10 +2,12 @@ import subprocess
 import sys
 from typing import Tuple
 import os
+
 def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
     '''
     Run command and return stdout and stderr
     '''
+    current_dir = os.getcwd()
     try:
         os.chdir(working_dir)
         proc = subprocess.run(
@@ -15,25 +17,29 @@ def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
             encoding='utf-8',
             timeout=5
         )
-        os.chdir('..')
         return proc.stdout, proc.stderr
     except subprocess.TimeoutExpired:
         return '', 'Timeout expired'
     except Exception as e:
         return '', str(e)
+    finally:
+        os.chdir(current_dir)
 
 def run_python_code(path: str) -> Tuple[str, str]:
     '''
     Run python code and return stdout and stderr
     '''
     try:
+        current_dir = os.getcwd()
+        os.chdir(os.path.dirname(path))
         proc = subprocess.run(
-            ['python3', path],
+            ['python3', os.path.basename(path)],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             encoding='utf-8',
             timeout=5
         )
+        os.chdir(current_dir)
         return proc.stdout, proc.stderr
     except subprocess.TimeoutExpired:
         return '', 'Timeout expired'
@@ -46,13 +52,16 @@ def run_node_code(path: str) -> Tuple[str, str]:
     Run node code and return stdout and stderr
     '''
     try:
+        current_dir = os.getcwd()
+        os.chdir(os.path.dirname(path))
         proc = subprocess.run(
-            ['node', path],
+            ['node', os.path.basename(path)],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             encoding='utf-8',
             timeout=5
         )
+        os.chdir(current_dir)
         return proc.stdout, proc.stderr
     except subprocess.TimeoutExpired:
         return '', 'Timeout expired'
@@ -103,10 +112,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # path = input('Enter path: ')
-    # code = ''
-    # with open(path, 'r') as f:
-    #     code = f.read()
-
-    # stdout, stderr = run_python_code(path)
-    # print(stdout, stderr)
