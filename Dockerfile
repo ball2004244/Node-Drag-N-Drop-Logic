@@ -3,10 +3,10 @@
 FROM python:3.10.13-alpine
 
 # Set the working directory to /app
-WORKDIR /application
+WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /application
+COPY . /app
 
 # Install the required packages
 RUN pip install -r requirements.txt
