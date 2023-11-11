@@ -2,11 +2,16 @@ import subprocess
 import sys
 from typing import Tuple
 import os
+from utils import path_exists, create_dir
 
 def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
     '''
     Run command and return stdout and stderr
     '''
+    # create temp directory if not exists
+    if not path_exists(working_dir):
+        create_dir(working_dir)
+
     current_dir = os.getcwd()
     try:
         os.chdir(working_dir)
