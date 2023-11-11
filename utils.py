@@ -1,5 +1,6 @@
 import threading
 import os
+import json
 from typing import Callable
 
 def run_thread(func: Callable, *args, **kwargs) -> None:
@@ -11,6 +12,28 @@ def run_thread(func: Callable, *args, **kwargs) -> None:
 
     # end thread
     t.join()
+
+def read_json(path: str) -> dict:
+    '''
+    Read json file at path
+    '''
+    try:
+        with open(path, 'r') as f:
+            return json.load(f)
+    except Exception as e:
+        print(str(e))
+        return {}
+    
+def read_file(path: str) -> str:
+    '''
+    Read file at path
+    '''
+    try:
+        with open(path, 'r') as f:
+            return f.read()
+    except Exception as e:
+        print(str(e))
+        return ''
 
 def create_file(path: str, content: str) -> None:
     '''
