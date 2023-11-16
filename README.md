@@ -4,8 +4,6 @@ Allow user to code Python using Json syntax.
 
 ## Overview
 
-This project enables user to code Python only using drag and drop. It is a web application that allows users to drag and drop blocks of code to create a Python program.
-
 This project allows users to code Python using Json syntax. It is a web server that receive, compile, and run pyJson code. The server is built using FastAPI and the code is compiled and run using Python subprocess module.
 
 ## Installation
