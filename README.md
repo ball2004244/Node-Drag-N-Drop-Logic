@@ -51,24 +51,19 @@ Send a POST request to the server with the following body:
 
 ```
 {
-    "code": "your code here"
+    "code": {
+        "print": "'Hello World!'",
+        "print2": "'I am PyJSON'"
+    }
+    "filename": "code.py"
 }
 ```
 
-## Example
-
-### Input
+Output:
 
 ```
-{
-    "code": "print('Hello World')"
-}
-```
-
-### Output
-
-```
-Hello World
+Hello World!
+I am PyJSON
 ```
 
 ## Supported Keywords
@@ -79,11 +74,11 @@ Hello World
 
 This part is under construction!
 
-See [Config](pyjson.cofig.json) for more details.
+See [Config](pyjson.config.json) for more details.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Upcoming Features
 
