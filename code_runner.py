@@ -4,6 +4,12 @@ from typing import Tuple
 import os
 from utils import path_exists, create_dir
 
+'''
+This file communicates with the OS to execute users' instructions.
+It is responsible for running Python code and Unix commands.
+'''
+
+
 def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
     '''
     Run command and return stdout and stderr
@@ -29,6 +35,7 @@ def run_command(command: str, working_dir: str = 'temp') -> Tuple[str, str]:
         return '', str(e)
     finally:
         os.chdir(current_dir)
+
 
 def run_python_code(path: str) -> Tuple[str, str]:
     '''
@@ -89,31 +96,3 @@ def get_cli() -> str:
     except Exception as e:
         print(str(e))
         exit(1)
-
-
-def main():
-    '''
-    Main function
-    '''
-    try:
-        # get cli arguments
-        path = get_cli()
-
-        code = ''
-        with open(path, 'r') as f:
-            code = f.read()
-
-        stdout, stderr = run_python_code(path)
-        print('------------------')
-        print('Original code:\n%s' % code)
-        print('------------------')
-        print('stdout:\n%s' % (stdout if stdout else None))
-        print('stderr:\n%s' % (stderr if stderr else None))
-        print('------------------')
-
-    except Exception as e:
-        print(None, str(e))
-
-
-if __name__ == '__main__':
-    main()

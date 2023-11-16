@@ -3,10 +3,15 @@ import re
 from typing import Union, Tuple
 from config import START_KEYWORDS, END_KEYWORDS, ALL_KEYWORDS
 
+'''
+This file is responsible for converting PyJSON code to Python code.
+'''
+
+
 class Translator:
     def __init__(self, raw_code: Union[str, dict]) -> None:
         self.json_code = raw_code
-        
+
         if isinstance(raw_code, str):
             self.json_code = json.loads(raw_code)
 
@@ -14,7 +19,7 @@ class Translator:
         self.indentation = '\t'
 
         self.variables = {}
-        
+
         self.start_keywords = START_KEYWORDS.copy()
         self.end_keywords = END_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()

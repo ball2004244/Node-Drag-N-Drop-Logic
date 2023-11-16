@@ -7,6 +7,10 @@ from typing import Dict
 from utils import create_path
 from config import dumped_pyjson_data, RESPONSE_TEMPLATE
 
+'''
+This file is the main file for the API.
+It defines CORS policy and all the endpoints.
+'''
 app = FastAPI()
 
 # Allow CORS from all origins
@@ -29,6 +33,7 @@ async def get_config() -> Dict[str, str]:
         "config": dumped_pyjson_data
     }
     return response
+
 
 @app.post("/pyjson")
 async def running_code(code_req: CodeRequest) -> Dict[str, str]:
