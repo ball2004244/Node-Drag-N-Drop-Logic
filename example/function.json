@@ -1,0 +1,10 @@
+{
+    "code": {
+        "comment": "Calculate a to the power of n",
+        "func": "power(a, n)",
+        "return": "a ** n",
+        "endfunc": "",
+        "print": "power(10, 2)"
+    },
+    "filename": "code.py"
+}

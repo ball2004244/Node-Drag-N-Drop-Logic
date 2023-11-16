@@ -1,7 +1,7 @@
 import json
 import re
-from typing import Union, Tuple
-from config import START_KEYWORDS, END_KEYWORDS, ALL_KEYWORDS
+from typing import Union, Tuple, List
+from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS, ALL_KEYWORDS
 
 '''
 This file is responsible for converting PyJSON code to Python code.
@@ -18,10 +18,10 @@ class Translator:
         self.python_code = ''
         self.indentation = '\t'
 
-        self.variables = {}
-
         self.start_keywords = START_KEYWORDS.copy()
         self.end_keywords = END_KEYWORDS.copy()
+        self.general_keywords = GENERAL_KEYWORDS.copy()
+        self.calc_keywords = CALC_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()
 
     def convert(self) -> Tuple[str, str]:
@@ -42,10 +42,18 @@ class Translator:
                     raise Exception('Indentation is less than 0')
 
                 # start translating
-                formatted_code = self.all_keywords[start_term] % value
+                
+                # Check if the current line is a calculation
+                if start_term in self.calc_keywords:
+                    formatted_code = self.calc_code_convert(keyword=start_term, expression=value)
+                else:
+                    formatted_code = self.general_keywords[start_term] % value
+
+                # Add non-empty line to the converted code
                 if formatted_code:
                     converted_code += f'{current_indentation}{formatted_code}\n'
 
+                # Modify the indentation
                 if start_term in self.start_keywords:
                     indent += 1
                 elif start_term in self.end_keywords:
@@ -64,6 +72,35 @@ class Translator:
 
             return 'error', str(e)
 
+    # Convert PyJSON expression to Python expression
+    def calc_code_convert(self, keyword: str, expression: List[str]) -> str:
+        # TODO: Implement the calculation for PyJSON code
+        try:
+            output = ''
+
+            # Get properties of the expression
+            var_type: str = keyword
+            var_name: str = expression[0]
+            var_value: str = expression[1]
+
+            # Check if the variable type is valid
+            if var_type not in self.calc_keywords:
+                raise Exception(f'Invalid variable type: {var_type}')
+
+            # Check if the variable name is valid
+            pattern = r'[a-zA-Z_][a-zA-Z0-9_]*'
+            if not re.match(pattern, var_name):
+                raise Exception(f'Invalid variable name: {var_name}')
+
+            # Convert the variable value to Python code
+            output = self.calc_keywords[var_type] % (var_name, var_value)
+
+            return output
+
+        except Exception as e:
+            print('Error converting calculation code')
+            print(e)
+            return ''
 
 if __name__ == '__main__':
     code = ''

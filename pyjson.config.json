@@ -19,5 +19,11 @@
     "endelse": "%s",
     "endfunc": "%s",
     "endclass": "%s"
+  },
+  "VAR_KEYWORDS": {
+    "int": "%s = int(%s)",
+    "str": "%s = str(%s)",
+    "float": "%s = float(%s)",
+    "bool": "%s = bool(%s)"
   }
 }

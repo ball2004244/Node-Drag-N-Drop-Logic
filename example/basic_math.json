@@ -1,0 +1,10 @@
+{
+    "code": {
+        "int": ["a", "5"],
+        "int2": ["b", "10"],
+        "int3": ["c", "a + b ** a"],
+        "float":["a", "c + 0.05"],
+        "print": "a"
+    },
+    "filename": "code.py"
+}

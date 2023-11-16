@@ -15,10 +15,21 @@ KEYWORDS = pyjson_data['KEYWORDS']
 START_KEYWORDS = pyjson_data['START_KEYWORDS']
 END_KEYWORDS = pyjson_data['END_KEYWORDS']
 
-ALL_KEYWORDS = {
+GENERAL_KEYWORDS = {
     **KEYWORDS,
     **START_KEYWORDS,
     **END_KEYWORDS
+}
+
+# Keywords for calculation and comparison
+VAR_KEYWORDS = pyjson_data['VAR_KEYWORDS']
+CALC_KEYWORDS = {
+    **VAR_KEYWORDS,
+}
+
+ALL_KEYWORDS = {
+    **GENERAL_KEYWORDS,
+    **CALC_KEYWORDS
 }
 
 RESPONSE_TEMPLATE = {

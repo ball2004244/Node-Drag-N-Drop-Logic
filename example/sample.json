@@ -8,5 +8,6 @@
         "print2": "i, 'is odd'",
         "endelse": "",
         "endfor": ""
-    }
+    },
+    "filename": "code.py"
 }
