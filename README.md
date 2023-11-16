@@ -36,13 +36,13 @@ uvicorn app:app --port 8000
 2. Pull the image from Docker Hub
 
 ```
-docker pull ball2004244/python-drag-drop
+docker pull ball2004244/pyjson-compiler
 ```
 
 3. Run the image
 
 ```
-docker run -d -p 8000:8000 ball2004244/python-drag-drop
+docker run -d -p 8000:8000 ball2004244/pyjson-compiler
 ```
 
 ## Usage
