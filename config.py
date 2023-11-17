@@ -27,9 +27,13 @@ CALC_KEYWORDS = {
     **VAR_KEYWORDS,
 }
 
+# Keywords for handling blocks
+BLOCK_KEYWORDS = pyjson_data['BLOCK_KEYWORDS']
+
 ALL_KEYWORDS = {
     **GENERAL_KEYWORDS,
-    **CALC_KEYWORDS
+    **CALC_KEYWORDS,
+    **BLOCK_KEYWORDS
 }
 
 RESPONSE_TEMPLATE = {

@@ -25,5 +25,8 @@
     "str": "%s = str(%s)",
     "float": "%s = float(%s)",
     "bool": "%s = bool(%s)"
+  },
+  "BLOCK_KEYWORDS": {
+    "block": "\n"
   }
 }

@@ -1,7 +1,7 @@
 import json
 import re
 from typing import Union, Tuple, List
-from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS, ALL_KEYWORDS
+from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS, BLOCK_KEYWORDS, ALL_KEYWORDS
 
 '''
 This file is responsible for converting PyJSON code to Python code.
@@ -22,14 +22,18 @@ class Translator:
         self.end_keywords = END_KEYWORDS.copy()
         self.general_keywords = GENERAL_KEYWORDS.copy()
         self.calc_keywords = CALC_KEYWORDS.copy()
+        self.block_keywords = BLOCK_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()
 
-    def convert(self) -> Tuple[str, str]:
+    def convert(self, json_code: Union[str, dict] = None) -> Tuple[str, str]:
         try:
+            if json_code is None:
+                json_code = self.json_code
+
             converted_code = ''
             indent = 0
-            for key, value in self.json_code.items():
-                # read key until first number
+            for key, value in json_code.items():
+                # * KEYWORD VALIDATION
                 pattern = r'[a-zA-Z]+'
                 start_term = re.search(pattern, key)
                 start_term = str(start_term.group())
@@ -41,11 +45,21 @@ class Translator:
                 if indent < 0:
                     raise Exception('Indentation is less than 0')
 
-                # start translating
-                
+                # * START TRANSLATION
+
+                # Process block keywords by recursively calling the convert function
+                if start_term in self.block_keywords:
+                    converted_code += (
+                        f'{self.block_keywords[start_term]}'
+                        f'{self.convert(value)[1]}'
+                        f'{self.block_keywords[start_term]}'
+                    )
+                    continue
+
                 # Check if the current line is a calculation
                 if start_term in self.calc_keywords:
-                    formatted_code = self.calc_code_convert(keyword=start_term, expression=value)
+                    formatted_code = self.calc_code_convert(
+                        keyword=start_term, expression=value)
                 else:
                     formatted_code = self.general_keywords[start_term] % value
 
@@ -53,7 +67,7 @@ class Translator:
                 if formatted_code:
                     converted_code += f'{current_indentation}{formatted_code}\n'
 
-                # Modify the indentation
+                # * INDENTATION HANDLING
                 if start_term in self.start_keywords:
                     indent += 1
                 elif start_term in self.end_keywords:
@@ -101,6 +115,7 @@ class Translator:
             print('Error converting calculation code')
             print(e)
             return ''
+
 
 if __name__ == '__main__':
     code = ''
