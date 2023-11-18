@@ -5,7 +5,7 @@ from code_runner import run_python_code, run_command
 from code_translator import Translator
 from typing import Dict
 from utils import create_path
-from config import dumped_pyjson_data, RESPONSE_TEMPLATE
+from config import dumped_config, RESPONSE_TEMPLATE
 
 '''
 This file is the main file for the API.
@@ -30,7 +30,7 @@ async def root() -> Dict[str, str]:
 async def get_config() -> Dict[str, str]:
     response = {
         "status": "success",
-        "config": dumped_pyjson_data
+        "config": dumped_config
     }
     return response
 

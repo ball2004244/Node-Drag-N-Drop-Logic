@@ -1,0 +1,32 @@
+{
+  "KEYWORDS": {
+    "out": "print(%s)",
+    "cmt": "# %s",
+    "ret": "return %s"
+  },
+  "START_KEYWORDS": {
+    "for": "for %s:",
+    "while": "while %s:",
+    "if": "if %s:",
+    "el": "else: %s",
+    "func": "def %s:",
+    "cls": "class %s:"
+  },
+  "END_KEYWORDS": {
+    "efor": "%s",
+    "ewhile": "%s",
+    "eif": "%s",
+    "eelse": "%s",
+    "efunc": "%s",
+    "ecls": "%s"
+  },
+  "VAR_KEYWORDS": {
+    "int": "%s = int(%s)",
+    "str": "%s = str(%s)",
+    "float": "%s = float(%s)",
+    "bool": "%s = bool(%s)"
+  },
+  "BLOCK_KEYWORDS": {
+    "blk": "\n"
+  }
+}

@@ -1,5 +1,5 @@
-import json
 import re
+from utils import read_json
 from typing import Union, Tuple, List
 from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS, BLOCK_KEYWORDS, ALL_KEYWORDS
 
@@ -13,7 +13,7 @@ class Translator:
         self.json_code = raw_code
 
         if isinstance(raw_code, str):
-            self.json_code = json.loads(raw_code)
+            self.json_code = read_json(raw_code)
 
         self.python_code = ''
         self.indentation = '\t'

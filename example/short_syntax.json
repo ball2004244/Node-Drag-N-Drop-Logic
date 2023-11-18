@@ -1,0 +1,15 @@
+{
+  "code": {
+    "cmt1": "Swap 2 numbers using shortcut syntaxes",
+    "int1": ["a", 5],
+    "int2": ["b", 10],
+    "blk1": {
+      "cmt1": "Swap using temp variable",
+      "int1": ["temp", "a"],
+      "int2": ["a", "b"],
+      "int3": ["b", "temp"]
+    },
+    "out": "f'After swapping, a = {a} and b = {b}'"
+  },
+  "filename": "code.py"
+}

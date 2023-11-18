@@ -1,19 +1,51 @@
-from utils import read_json
-import json
+from utils import read_json, dump_json
 
 '''
 This file contains all the configuration for the API.
-It will read the configuration from pyjson.config.json file.
-Then use this syntax as the template to convert PyJSON code to Python code.
+It reads configs from saved json files,
+Then use their syntaxes as template to convert PyJSON to Python.
 '''
 
-filename = 'pyjson.config.json'
-pyjson_data: dict = read_json(filename)
-dumped_pyjson_data: str = json.dumps(pyjson_data)
+# Load configuration
+config_file = 'pyjson.config.json'
+shortcut_file = 'pyjson.shortcut.json'
+config = read_json(config_file)
+shortcuts = read_json(shortcut_file)
+dumped_config = dump_json(config)
 
-KEYWORDS = pyjson_data['KEYWORDS']
-START_KEYWORDS = pyjson_data['START_KEYWORDS']
-END_KEYWORDS = pyjson_data['END_KEYWORDS']
+# * Define keywords
+# 1-word keywords
+KEYWORDS = {
+    **config['KEYWORDS'],
+    **shortcuts['KEYWORDS']
+}
+
+# # Pair keywords
+START_KEYWORDS = {
+    **config['START_KEYWORDS'],
+    **shortcuts['START_KEYWORDS']
+}
+END_KEYWORDS = {
+    **config['END_KEYWORDS'],
+    **shortcuts['END_KEYWORDS']
+}
+
+# Keywords for calculation and comparison
+VAR_KEYWORDS = {
+    **config['VAR_KEYWORDS'],
+    **shortcuts['VAR_KEYWORDS']
+}
+CALC_KEYWORDS = {
+    **VAR_KEYWORDS,
+}
+
+# Keywords for handling blocks
+BLOCK_KEYWORDS = {
+    **config['BLOCK_KEYWORDS'],
+    **shortcuts['BLOCK_KEYWORDS']
+}
+
+# * Define all general keywords here
 
 GENERAL_KEYWORDS = {
     **KEYWORDS,
@@ -21,21 +53,13 @@ GENERAL_KEYWORDS = {
     **END_KEYWORDS
 }
 
-# Keywords for calculation and comparison
-VAR_KEYWORDS = pyjson_data['VAR_KEYWORDS']
-CALC_KEYWORDS = {
-    **VAR_KEYWORDS,
-}
-
-# Keywords for handling blocks
-BLOCK_KEYWORDS = pyjson_data['BLOCK_KEYWORDS']
-
 ALL_KEYWORDS = {
     **GENERAL_KEYWORDS,
     **CALC_KEYWORDS,
     **BLOCK_KEYWORDS
 }
 
+# template for compiler response
 RESPONSE_TEMPLATE = {
     'status': 'success',
     'stdout': '',

@@ -1,7 +1,7 @@
 import threading
 import os
 import json
-from typing import Callable
+from typing import Callable, Optional, Union
 
 '''
 This file acts as a utility file for the API.
@@ -30,6 +30,23 @@ def read_json(path: str) -> dict:
     except Exception as e:
         print(str(e))
         return {}
+
+
+def dump_json(data: any, path: Optional[str] = None) -> Union[str, None]:
+    '''
+    Dump json data
+    '''
+
+    try:
+        if path is None:
+            return json.dumps(data)
+
+        with open(path, 'w') as f:
+            json.dump(data, f)
+            return
+    except Exception as e:
+        print(str(e))
+        return None
 
 
 def read_file(path: str) -> str:
