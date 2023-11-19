@@ -30,7 +30,7 @@
     "list": "%s = list(%s)",
     "tuple": "%s = tuple(%s)",
     "set": "%s = set(%s)",
-    "dict": "%s = json.loads(%s)"
+    "dict": "%s = dict(%s)"
   },
   "BLOCK_KEYWORDS": {
     "block": "\n"

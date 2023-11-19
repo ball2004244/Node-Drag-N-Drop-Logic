@@ -7,7 +7,7 @@ from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS
 This file is responsible for converting PyJSON code to Python code.
 '''
 
-
+# TODO: Implement Advanced Data Types
 class Translator:
     def __init__(self, raw_code: Union[str, dict]) -> None:
         self.json_code = raw_code

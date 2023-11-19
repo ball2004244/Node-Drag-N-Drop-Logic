@@ -35,8 +35,16 @@ VAR_KEYWORDS = {
     **config.get('VAR_KEYWORDS', {}),
     **(shortcuts.get('VAR_KEYWORDS', {}) if shortcuts.get('VAR_KEYWORDS') else {})
 }
+
+# Keywords for advanced data types
+ADVANCED_TYPES_KEYWORDS = {
+    **config['ADV_DATA_TYPES'],
+    **(shortcuts.get('ADV_DATA_TYPES', {}) if shortcuts.get('ADV_DATA_TYPES') else {})
+}
+
 CALC_KEYWORDS = {
     **VAR_KEYWORDS,
+    **ADVANCED_TYPES_KEYWORDS,
 }
 
 # Keywords for handling blocks
@@ -56,7 +64,7 @@ GENERAL_KEYWORDS = {
 ALL_KEYWORDS = {
     **GENERAL_KEYWORDS,
     **CALC_KEYWORDS,
-    **BLOCK_KEYWORDS
+    **BLOCK_KEYWORDS,
 }
 
 # template for compiler response
