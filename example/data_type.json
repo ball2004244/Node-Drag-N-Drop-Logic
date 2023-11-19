@@ -1,0 +1,24 @@
+{
+  "code": {
+    "cmt": "Advanced PyJSON data types",
+    "blk1": {
+      "list": ["a", [1, 2, 3, 4, 5]],
+      "tuple": ["b", [1, 2, 3, 4, 5]],
+      "set": ["c", [1, 2, 3, 4, 5]],
+      "dict": [
+        "d",
+        {
+          "a": 1,
+          "b": 2,
+          "c": 3
+        }
+      ]
+    },
+    "blk2": {
+      "cmt": "Short syntax",
+      "lst": ["a", [1, 2, 3, 4, 5]],
+      "tup": ["b", [1, 2, 3, 4, 5]]
+    }
+  },
+  "filename": "code.py"
+}

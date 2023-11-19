@@ -7,7 +7,6 @@ from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS
 This file is responsible for converting PyJSON code to Python code.
 '''
 
-
 class Translator:
     def __init__(self, raw_code: Union[str, dict]) -> None:
         self.json_code = raw_code
@@ -88,7 +87,6 @@ class Translator:
 
     # Convert PyJSON expression to Python expression
     def calc_code_convert(self, keyword: str, expression: List[str]) -> str:
-        # TODO: Implement the calculation for PyJSON code
         try:
             output = ''
 
