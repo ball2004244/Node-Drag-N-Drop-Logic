@@ -21,12 +21,6 @@
     "efunc": "%s",
     "ecls": "%s"
   },
-  "VAR_KEYWORDS": {
-    "int": "%s = int(%s)",
-    "str": "%s = str(%s)",
-    "float": "%s = float(%s)",
-    "bool": "%s = bool(%s)"
-  },
   "BLOCK_KEYWORDS": {
     "el": "else: %s\n",
     "func": "def %s:\n",
