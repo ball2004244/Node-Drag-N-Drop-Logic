@@ -17,32 +17,40 @@ dumped_config = dump_json(config)
 # 1-word keywords
 KEYWORDS = {
     **config['KEYWORDS'],
-    **shortcuts['KEYWORDS']
+    **(shortcuts.get('KEYWORDS', {}) if shortcuts.get('KEYWORDS') else {})
 }
 
 # # Pair keywords
 START_KEYWORDS = {
     **config['START_KEYWORDS'],
-    **shortcuts['START_KEYWORDS']
+    **(shortcuts.get('START_KEYWORDS', {}) if shortcuts.get('START_KEYWORDS') else {})
 }
 END_KEYWORDS = {
     **config['END_KEYWORDS'],
-    **shortcuts['END_KEYWORDS']
+    **(shortcuts.get('END_KEYWORDS', {}) if shortcuts.get('END_KEYWORDS') else {})
 }
 
-# Keywords for calculation and comparison
+# Keywords for data types
 VAR_KEYWORDS = {
-    **config['VAR_KEYWORDS'],
-    **shortcuts['VAR_KEYWORDS']
+    **config.get('VAR_KEYWORDS', {}),
+    **(shortcuts.get('VAR_KEYWORDS', {}) if shortcuts.get('VAR_KEYWORDS') else {})
 }
+
+# Keywords for advanced data types
+ADVANCED_TYPES_KEYWORDS = {
+    **config['ADV_DATA_TYPES'],
+    **(shortcuts.get('ADV_DATA_TYPES', {}) if shortcuts.get('ADV_DATA_TYPES') else {})
+}
+
 CALC_KEYWORDS = {
     **VAR_KEYWORDS,
+    **ADVANCED_TYPES_KEYWORDS,
 }
 
 # Keywords for handling blocks
 BLOCK_KEYWORDS = {
     **config['BLOCK_KEYWORDS'],
-    **shortcuts['BLOCK_KEYWORDS']
+    **(shortcuts.get('BLOCK_KEYWORDS', {}) if shortcuts.get('BLOCK_KEYWORDS') else {})
 }
 
 # * Define all general keywords here
@@ -56,7 +64,7 @@ GENERAL_KEYWORDS = {
 ALL_KEYWORDS = {
     **GENERAL_KEYWORDS,
     **CALC_KEYWORDS,
-    **BLOCK_KEYWORDS
+    **BLOCK_KEYWORDS,
 }
 
 # template for compiler response
@@ -66,4 +74,4 @@ RESPONSE_TEMPLATE = {
     'stderr': ''
 }
 if __name__ == '__main__':
-    print(KEYWORDS['print'] % 'Hello World')
+    print(KEYWORDS)

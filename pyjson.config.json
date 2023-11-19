@@ -10,7 +10,7 @@
     "if": "if %s:",
     "elif": "elif %s:",
     "else": "else: %s",
-    "func": "def %s:",
+    "function": "def %s:",
     "class": "class %s:"
   },
   "END_KEYWORDS": {
@@ -19,7 +19,7 @@
     "endif": "%s",
     "endelif": "%s",
     "endelse": "%s",
-    "endfunc": "%s",
+    "endfunction": "%s",
     "endclass": "%s"
   },
   "VAR_KEYWORDS": {
@@ -27,6 +27,12 @@
     "str": "%s = str(%s)",
     "float": "%s = float(%s)",
     "bool": "%s = bool(%s)"
+  },
+  "ADV_DATA_TYPES": {
+    "list": "%s = list(%s)",
+    "tuple": "%s = tuple(%s)",
+    "set": "%s = set(%s)",
+    "dict": "%s = dict(%s)"
   },
   "BLOCK_KEYWORDS": {
     "for": "for %s:\n",

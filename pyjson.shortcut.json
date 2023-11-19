@@ -5,8 +5,6 @@
     "ret": "return %s"
   },
   "START_KEYWORDS": {
-    "for": "for %s:",
-    "while": "while %s:",
     "if": "if %s:",
     "el": "else: %s",
     "func": "def %s:",
@@ -20,6 +18,10 @@
     "eelse": "%s",
     "efunc": "%s",
     "ecls": "%s"
+  },
+  "ADV_DATA_TYPES": {
+    "lst": "%s = list(%s)",
+    "tup": "%s = tuple(%s)"
   },
   "BLOCK_KEYWORDS": {
     "el": "else: %s\n",
