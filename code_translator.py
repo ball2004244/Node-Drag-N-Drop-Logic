@@ -16,6 +16,7 @@ class Translator:
 
         self.python_code = ''
         self.indentation = '\t'
+        self.indent = 0
 
         self.start_keywords = START_KEYWORDS.copy()
         self.end_keywords = END_KEYWORDS.copy()
@@ -29,30 +30,31 @@ class Translator:
             if json_code is None:
                 json_code = self.json_code
 
+            if isinstance(json_code, str):
+                json_code = read_json(json_code)
+
             converted_code = ''
-            indent = 0
             for key, value in json_code.items():
                 # * KEYWORD VALIDATION
                 pattern = r'[a-zA-Z]+'
                 start_term = re.search(pattern, key)
                 start_term = str(start_term.group())
-                current_indentation = self.indentation * indent
+                current_indentation = self.indentation * self.indent
 
                 if start_term not in self.all_keywords:
                     raise Exception(f'Keyword {key} is not supported')
 
-                if indent < 0:
+                if self.indent < 0:
                     raise Exception('Indentation is less than 0')
 
                 # * START TRANSLATION
 
                 # Process block keywords by recursively calling the convert function
                 if start_term in self.block_keywords:
-                    converted_code += (
-                        f'{self.block_keywords[start_term]}'
-                        f'{self.convert(value)[1]}'
-                        f'{self.block_keywords[start_term]}'
-                    )
+                    converted_code += f'{current_indentation}{self.block_keywords[start_term] % value[0]}'
+                    self.indent += 1
+                    converted_code += f'{self.convert(value[1])[1]}\n'
+                    self.indent -= 1
                     continue
 
                 # Check if the current line is a calculation
@@ -68,9 +70,9 @@ class Translator:
 
                 # * INDENTATION HANDLING
                 if start_term in self.start_keywords:
-                    indent += 1
+                    self.indent += 1
                 elif start_term in self.end_keywords:
-                    indent -= 1
+                    self.indent -= 1
 
             return 'success', converted_code
 

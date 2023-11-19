@@ -1,15 +1,22 @@
 {
   "code": {
-    "cmt1": "Swap 2 numbers using shortcut syntaxes",
-    "int1": ["a", 5],
-    "int2": ["b", 10],
-    "blk1": {
-      "cmt1": "Swap using temp variable",
-      "int1": ["temp", "a"],
-      "int2": ["a", "b"],
-      "int3": ["b", "temp"]
-    },
-    "out": "f'After swapping, a = {a} and b = {b}'"
+    "cmt1": "Write a program that calc fibo",
+
+    "func1": [
+      "fibo(n)",
+      {
+        "if1": ["n < 2", { "ret:": "n" }],
+        "el1": ["", { "ret": "fibo(n-1) + fibo(n-2)" }]
+      }
+    ],
+
+    "cmt2": "Test for fibo from a to b",
+    "int1": ["a", "1"],
+    "int2": ["b", "6"],
+    "for1": [
+      "i in range(a, b + 1)",
+      { "out": "f'fibo({i}) = {fibo(i)}'" }
+    ]
   },
   "filename": "code.py"
 }

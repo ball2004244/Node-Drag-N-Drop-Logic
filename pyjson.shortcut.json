@@ -14,6 +14,7 @@
     "efor": "%s",
     "ewhile": "%s",
     "eif": "%s",
+    "eelif": "%s",
     "eelse": "%s",
     "efunc": "%s",
     "ecls": "%s"
@@ -23,6 +24,8 @@
     "tup": "%s = tuple(%s)"
   },
   "BLOCK_KEYWORDS": {
-    "blk": "\n"
+    "el": "else: %s\n",
+    "func": "def %s:\n",
+    "cls": "class %s:\n"
   }
 }
