@@ -23,9 +23,17 @@
     "lst": "%s = list(%s)",
     "tup": "%s = tuple(%s)"
   },
-  "BLOCK_KEYWORDS": {
+  "BRACKET_KEYWORDS": {
     "el": "else: %s\n",
     "func": "def %s:\n",
     "cls": "class %s:\n"
+  },
+  "BLOCK_KEYWORDS": {
+    "blk": "\n"
+  },
+  "NON_PARAM_KEYWORDS": {
+    "br": "break",
+    "cont": "continue",
+    "pass": "pass"
   }
 }

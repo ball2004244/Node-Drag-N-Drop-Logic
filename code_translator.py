@@ -1,11 +1,12 @@
 import re
 from utils import read_json
 from typing import Union, Tuple, List
-from config import START_KEYWORDS, END_KEYWORDS, GENERAL_KEYWORDS, CALC_KEYWORDS, BLOCK_KEYWORDS, ALL_KEYWORDS
+from config import *
 
 '''
 This file is responsible for converting PyJSON code to Python code.
 '''
+
 
 class Translator:
     def __init__(self, raw_code: Union[str, dict]) -> None:
@@ -23,6 +24,8 @@ class Translator:
         self.general_keywords = GENERAL_KEYWORDS.copy()
         self.calc_keywords = CALC_KEYWORDS.copy()
         self.block_keywords = BLOCK_KEYWORDS.copy()
+        self.bracket_keywords = BRACKET_KEYWORDS.copy()
+        self.non_param_keywords = NON_PARAM_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()
 
     def convert(self, json_code: Union[str, dict] = None) -> Tuple[str, str]:
@@ -48,20 +51,34 @@ class Translator:
                     raise Exception('Indentation is less than 0')
 
                 # * START TRANSLATION
-
                 # Process block keywords by recursively calling the convert function
                 if start_term in self.block_keywords:
-                    converted_code += f'{current_indentation}{self.block_keywords[start_term] % value[0]}'
+                    converted_code += (
+                        f'{self.block_keywords[start_term]}'
+                        f'{self.convert(value)[1]}'
+                        f'{self.block_keywords[start_term]}'
+                    )
+                    continue
+
+                # Process bracket keywords by recursively calling the convert function
+                if start_term in self.bracket_keywords:
+                    converted_code += f'{current_indentation}{self.bracket_keywords[start_term] % value[0]}'
                     self.indent += 1
                     converted_code += f'{self.convert(value[1])[1]}\n'
                     self.indent -= 1
                     continue
 
+                # Check if current line is a non-param keyword
+                if start_term in self.non_param_keywords:
+                    formatted_code = self.non_param_keywords[start_term]
+
                 # Check if the current line is a calculation
                 if start_term in self.calc_keywords:
                     formatted_code = self.calc_code_convert(
                         keyword=start_term, expression=value)
-                else:
+
+                # Check if the current line is a general keyword
+                if start_term in self.general_keywords:
                     formatted_code = self.general_keywords[start_term] % value
 
                 # Add non-empty line to the converted code

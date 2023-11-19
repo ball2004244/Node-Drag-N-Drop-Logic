@@ -53,18 +53,32 @@ BLOCK_KEYWORDS = {
     **(shortcuts.get('BLOCK_KEYWORDS', {}) if shortcuts.get('BLOCK_KEYWORDS') else {})
 }
 
+# Keyword for bracket syntaxs
+BRACKET_KEYWORDS = {
+    **config['BRACKET_KEYWORDS'],
+    **(shortcuts.get('BRACKET_KEYWORDS', {}) if shortcuts.get('BRACKET_KEYWORDS') else {})
+}
+
+# Non param keywords
+NON_PARAM_KEYWORDS = {
+    **config['NON_PARAM_KEYWORDS'],
+    **(shortcuts.get('NON_PARAM_KEYWORDS', {}) if shortcuts.get('NON_PARAM_KEYWORDS') else {})
+}
+
 # * Define all general keywords here
 
 GENERAL_KEYWORDS = {
     **KEYWORDS,
     **START_KEYWORDS,
-    **END_KEYWORDS
+    **END_KEYWORDS,
 }
 
 ALL_KEYWORDS = {
     **GENERAL_KEYWORDS,
     **CALC_KEYWORDS,
     **BLOCK_KEYWORDS,
+    **BRACKET_KEYWORDS,
+    **NON_PARAM_KEYWORDS,
 }
 
 # template for compiler response

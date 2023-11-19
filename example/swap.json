@@ -1,17 +1,26 @@
 {
   "code": {
     "comment": "Basic Swap in PyJSON",
-    "int": ["a", "100"],
-    "int2": ["b", "200"],
-    "print5": "'Before Swap'",
-    "print1": "'a:', a",
-    "print2": "'b:', b",
-    "int3": ["temp", "a"],
-    "int4": ["a", "b"],
-    "int5": ["b", "temp"],
-    "print6": "'After Swap'",
-    "print3": "'a:', a",
-    "print4": "'b:', b"
+    "block1": {
+      "comment": "Declare Variables",
+      "int1": ["a", "100"],
+      "int2": ["b", "200"],
+      "print1": "'Before Swap'",
+      "print2": "'a:', a",
+      "print3": "'b:', b"
+    },
+    "block2": {
+      "comment": "Swapping",
+      "int1": ["temp", "a"],
+      "int2": ["a", "b"],
+      "int3": ["b", "temp"]
+    },
+    "block3": {
+      "comment": "Print After Swap",
+      "print1": "'After Swap'",
+      "print2": "'a:', a",
+      "print3": "'b:', b"
+    }
   },
   "filename": "code.py"
 }

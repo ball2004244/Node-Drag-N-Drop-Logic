@@ -34,7 +34,7 @@
     "set": "%s = set(%s)",
     "dict": "%s = dict(%s)"
   },
-  "BLOCK_KEYWORDS": {
+  "BRACKET_KEYWORDS": {
     "for": "for %s:\n",
     "while": "while %s:\n",
     "if": "if %s:\n",
@@ -42,5 +42,13 @@
     "else": "else: %s\n",
     "function": "def %s:\n",
     "class": "class %s:\n"
+  },
+  "BLOCK_KEYWORDS": {
+    "block": "\n"
+  },
+  "NON_PARAM_KEYWORDS": {
+    "break": "break",
+    "continue": "continue",
+    "pass": "pass"
   }
 }

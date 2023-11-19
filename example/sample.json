@@ -1,5 +1,6 @@
 {
     "code": {
+        "comment": "This program classifies numbers as even or odd",
         "for": "i in range(10)",
         "if": "i % 2 == 0",
         "print": "i, 'is even'",

@@ -1,0 +1,24 @@
+{
+  "code": {
+    "cmt1": "Basic OOP with PyJSON",
+    "cls1": [
+      "Person",
+      {
+        "func1": [
+          "__init__(self, name, age)",
+          {
+            "str1": ["self.name", "name"],
+            "int1": ["self.age", "age"]
+          }
+        ],
+        "func2": [
+          "get_name(self)",
+          {
+            "ret": "'My name is %s' % self.name"
+          }
+        ]
+      }
+    ]
+  },
+  "filename": "code.py"
+}

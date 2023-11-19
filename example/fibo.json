@@ -1,6 +1,6 @@
 {
   "code": {
-    "cmt1": "Write a program that calc fibo",
+    "cmt1": "A program that find the n-th Fibonacci number",
 
     "func1": [
       "fibo(n)",
