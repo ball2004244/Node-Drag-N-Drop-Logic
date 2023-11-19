@@ -8,6 +8,7 @@
     "for": "for %s:",
     "while": "while %s:",
     "if": "if %s:",
+    "elif": "elif %s:",
     "else": "else: %s",
     "func": "def %s:",
     "class": "class %s:"
@@ -16,6 +17,7 @@
     "endfor": "%s",
     "endwhile": "%s",
     "endif": "%s",
+    "endelif": "%s",
     "endelse": "%s",
     "endfunc": "%s",
     "endclass": "%s"
@@ -27,6 +29,12 @@
     "bool": "%s = bool(%s)"
   },
   "BLOCK_KEYWORDS": {
-    "block": "\n"
+    "for": "for %s:\n",
+    "while": "while %s:\n",
+    "if": "if %s:\n",
+    "elif": "elif %s:\n",
+    "else": "else: %s\n",
+    "function": "def %s:\n",
+    "class": "class %s:\n"
   }
 }

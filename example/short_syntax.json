@@ -2,12 +2,11 @@
   "code": {
     "cmt1": "Write a program that calc fibo",
 
-    "func": [
-      "fibo",
-      ["n"],
+    "func1": [
+      "fibo(n)",
       {
         "if1": ["n < 2", { "ret:": "n" }],
-        "el1": { "ret": "fibo(n-1) + fibo(n-2)" }
+        "el1": ["", { "ret": "fibo(n-1) + fibo(n-2)" }]
       }
     ],
 
