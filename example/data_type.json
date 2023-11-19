@@ -1,9 +1,8 @@
 {
   "code": {
-    "cmt": "All advanced data type in PyJSON",
+    "cmt": "Advanced PyJSON data types",
     "blk1": {
       "list": ["a", [1, 2, 3, 4, 5]],
-
       "tuple": ["b", [1, 2, 3, 4, 5]],
       "set": ["c", [1, 2, 3, 4, 5]],
       "dict": [
