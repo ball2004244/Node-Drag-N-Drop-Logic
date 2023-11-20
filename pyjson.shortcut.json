@@ -35,5 +35,8 @@
     "br": "break",
     "cont": "continue",
     "pass": "pass"
+  },
+  "CLASS_ASSIGN_KEYWORDS": {
+    "obj": "%s = %s"
   }
 }

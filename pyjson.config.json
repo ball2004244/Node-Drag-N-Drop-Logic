@@ -50,5 +50,11 @@
     "break": "break",
     "continue": "continue",
     "pass": "pass"
+  },
+  "CLASS_CALL_KEYWORDS": {
+    "call": "%s.%s"
+  },
+  "CLASS_ASSIGN_KEYWORDS": {
+    "object": "%s = %s"
   }
 }

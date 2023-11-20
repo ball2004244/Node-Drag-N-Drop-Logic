@@ -65,6 +65,22 @@ NON_PARAM_KEYWORDS = {
     **(shortcuts.get('NON_PARAM_KEYWORDS', {}) if shortcuts.get('NON_PARAM_KEYWORDS') else {})
 }
 
+# Define all class keywords here
+CLASS_CALL_KEYWORDS = {
+    **config['CLASS_CALL_KEYWORDS'],
+    **(shortcuts.get('CLASS_CALL_KEYWORDS', {}) if shortcuts.get('CLASS_CALL_KEYWORDS') else {})
+}
+
+CLASS_ASSIGN_KEYWORDS = {
+    **config['CLASS_ASSIGN_KEYWORDS'],
+    **(shortcuts.get('CLASS_ASSIGN_KEYWORDS', {}) if shortcuts.get('CLASS_ASSIGN_KEYWORDS') else {})
+}
+
+CLASS_KEYWORDS = {
+    **CLASS_CALL_KEYWORDS,
+    **CLASS_ASSIGN_KEYWORDS,
+}
+
 # * Define all general keywords here
 
 GENERAL_KEYWORDS = {

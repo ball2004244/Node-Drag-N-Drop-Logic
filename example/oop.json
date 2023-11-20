@@ -18,7 +18,11 @@
           }
         ]
       }
-    ]
+    ],
+
+    "obj": ["p", "Person('John', 36)"],
+    "call": ["p", "get_name()"],
+    "int2": ["a", "p.age"]
   },
   "filename": "code.py"
 }

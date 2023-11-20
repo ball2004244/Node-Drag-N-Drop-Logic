@@ -26,6 +26,7 @@ class Translator:
         self.block_keywords = BLOCK_KEYWORDS.copy()
         self.bracket_keywords = BRACKET_KEYWORDS.copy()
         self.non_param_keywords = NON_PARAM_KEYWORDS.copy()
+        self.class_keywords = CLASS_KEYWORDS.copy()
         self.all_keywords = ALL_KEYWORDS.copy()
 
     def convert(self, json_code: Union[str, dict] = None) -> Tuple[str, str]:
@@ -67,6 +68,11 @@ class Translator:
                     converted_code += f'{self.convert(value[1])[1]}\n'
                     self.indent -= 1
                     continue
+                
+                # Process class keywords
+                if start_term in self.class_keywords:
+                    formatted_code = self.class_code_convert(
+                        keyword=start_term, content=value)
 
                 # Check if current line is a non-param keyword
                 if start_term in self.non_param_keywords:
@@ -133,6 +139,19 @@ class Translator:
             print(e)
             return ''
 
+    # Handling OOP code
+    def class_code_convert(self, keyword: str, expression: List[str]) -> str:
+        try:
+            output = ''
+
+            # TODO: Handle OOP code here
+
+            return output
+
+        except Exception as e:
+            print('Error converting class code')
+            print(e)
+            return ''
 
 if __name__ == '__main__':
     code = ''
